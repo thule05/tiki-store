@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tibiki Store – Cửa hàng</title>
+
+    <link rel="icon" type="image/png" href="image/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylebanner.css">
+    <link rel="stylesheet" href="style_feature.css">
+    <link rel="stylesheet" href="StyleSP.css">
+    <link rel="stylesheet" href="stylecheckout.css">
+    <link rel="stylesheet" href="styleshop.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/665f470f28.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <img src="image/logo.png" alt="Tibiki" height="65" width="210">
+        <div class="search-box">
+            <a href="">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <input type="text" id="searchInput" placeholder="Nhập từ khóa..." />
+            <button onclick="search()">Tìm kiếm</button>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="gioithieu.html">Giới thiệu</a></li>
+                <li><a href="shop.html">Cửa hàng</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+                <button id="cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span id="cart-count">0</span>)
+                </button>
+                <li><button id="login-btn">Đăng nhập</button></li>
+                <li><button id="logout-btn" class="hidden">Đăng xuất</button></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Modal Đăng nhập / Đăng ký -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-auth">&times;</span>
+
+            <!-- Form Đăng nhập -->
+            <div id="login-form">
+                <h2>Đăng nhập</h2>
+                <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
+                <input type="password" id="login-password" placeholder="Mật khẩu" required>
+                <button onclick="handleLogin()">Đăng nhập</button>
+                <p>Chưa có tài khoản? <a href="#" id="show-register">Đăng ký</a></p>
+            </div>
+
+            <!-- Form Đăng ký -->
+            <div id="register-form" class="hidden">
+                <h2>Đăng ký</h2>
+                <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
+                <input type="email" id="register-email" placeholder="Email" required>
+                <input type="password" id="register-password" placeholder="Mật khẩu" required>
+                <button onclick="handleRegister()">Đăng ký</button>
+                <p>Đã có tài khoản? <a href="#" id="show-login">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+
+    <section class="shop-page">
+        <h2 class="shop-title">Tibiki Store – Cửa hàng</h2>
+
+        <div class="shop-layout">
+            <!-- BỘ LỌC DANH MỤC -->
+            <aside class="shop-filter">
+                <h3>Danh mục <i class="fa-solid fa-filter"></i></h3>
+                <ul>
+                    <li><label><input type="checkbox" class="filter-checkbox" value="sach" checked> Sách</label></li>
+                    <li><label><input type="checkbox" class="filter-checkbox" value="congnghe" checked> Công
+                            nghệ</label></li>
+                    <li><label><input type="checkbox" class="filter-checkbox" value="giadung" checked> Đồ gia
+                            dụng</label></li>
+                    <li><label><input type="checkbox" class="filter-checkbox" value="thucpham" checked> Thực
+                            phẩm</label></li>
+                    <li><label><input type="checkbox" class="filter-checkbox" value="vanphongpham" checked> Văn phòng
+                            phẩm</label></li>
+                </ul>
+            </aside>
+
+            <!-- DANH SÁCH SẢN PHẨM -->
+            <div class="shop-grid" id="productList">
+
+                <!-- ======= SÁCH ======= -->
+                <div class="shop-card" data-category="sach">
+                    <div class="sale-badge">-37%</div>
+                    <img src="image/sach1.png" alt="Nghệ Thuật Tư Duy Phản Biện">
+                    <div class="shop-info">
+                        <h3>Nghệ Thuật Tư Duy Phản Biện <br><span class="verified">Chính hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 6300</span>
+                        </div>
+                        <p class="price">81.270₫ <span class="old-price">129.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="sach">
+                    <div class="sale-badge">-32%</div>
+                    <img src="image/sach2.png" alt="Rèn Luyện Tư Duy Hệ Thống">
+                    <div class="shop-info">
+                        <h3>Rèn Luyện Tư Duy Hệ Thống Trong Công Việc <br> <span class="verified">Chính hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★☆</span>
+                            <span class="sold">Đã bán 190</span>
+                        </div>
+                        <p class="price">87.700₫ <span class="old-price">129.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="sach">
+                    <div class="sale-badge">-36%</div>
+                    <img src="image/sach3.png" alt="Vận Mệnh Tiền Kiếp">
+                    <div class="shop-info">
+                        <h3> Vận Mệnh Tiền Kiếp <br><br> <span class="verified">Chính hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 400</span>
+                        </div>
+                        <p class="price">82.560₫ <span class="old-price">129.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="sach">
+                    <div class="sale-badge">-34%</div>
+                    <img src="image/sach4.png" alt="Phương Pháp Làm Việc Siêu Hiệu Quả Của Toyota">
+                    <div class="shop-info">
+                        <h3> Phương Pháp Làm Việc Siêu Hiệu Quả Của Toyota <br> <span class="verified">Chính hãng</span>
+                        </h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 400</span>
+                        </div>
+                        <p class="price">84.900₫ <span class="old-price">129.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <!-- ======= CÔNG NGHỆ ======= -->
+                <div class="shop-card" data-category="congnghe">
+                    <img src="image/laptop.png" alt="Laptop">
+                    <div class="shop-info">
+                        <h3>LapTop Lenovo V14 IIL-82C400W3VN <br> <span class="verified">Chính hãng</span>
+                        </h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★☆</span>
+                            <span class="sold">Đã bán 100</span>
+                        </div>
+                        <p class="price">10.120.000₫<span class="old-price">10.150.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="congnghe">
+                    <div class="sale-badge">-67%</div>
+                    <img src="image/headphone.png" alt="Tai nghe">
+                    <div class="shop-info">
+                        <h3>Tai nghe bluetooth nhét tai Neckband <br> <span class="verified">Chính hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★☆☆☆</span>
+                            <span class="sold">Đã bán 11</span>
+                        </div>
+                        <p class="price">83.000₫ <span class="old-price">250.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <!-- ======= ĐỒ GIA DỤNG ======= -->
+                <div class="shop-card" data-category="giadung">
+                    <div class="sale-badge">-41%</div>
+                    <img src="image/giadung1.png" alt="Nồi cơm điện">
+                    <div class="shop-info">
+                        <h3>Nồi cơm điện Locknlock Nemo <br> <span class="verified">Chính hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★☆</span>
+                            <span class="sold">Đã bán 3,5k</span>
+                        </div>
+                        <p class="price">1.656.900₫ <span class="old-price">2.825.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="giadung">
+                    <div class="sale-badge">-46%</div>
+                    <img src="image/giadung2.png" alt="Máy xay sinh tố">
+                    <div class="shop-info">
+                        <h3>Máy Xay Sinh Tố Lock&Lock <br><br> <span class="verified">Chính hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 2,1k</span>
+                        </div>
+                        <p class="price">524.700₫ <span class="old-price">966.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <!-- ======= THỰC PHẨM ======= -->
+                <div class="shop-card" data-category="thucpham">
+                    <div class="sale-badge">-14%</div>
+                    <img src="image/sp1.png" alt="Máy xay sinh tố">
+                    <div class="shop-info">
+                        <h3>Sữa Lúa Mạch Nestlé MILO Teen Protein Canxi (24 x 210ml) <span class="verified">Chính
+                                hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 2k</span>
+                        </div>
+                        <p class="price">264.629₫ <span class="old-price">310.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="thucpham">
+                    <div class="sale-badge">-12%</div>
+                    <img src="image/trasua.png" alt="Trà sữa NESTEA trân châu hộp 5 gói x 17 g">
+                    <div class="shop-info">
+                        <h3>Trà sữa NESTEA trân châu hộp 5 gói x 17 g <br> <span class="verified">Chính
+                                hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 42</span>
+                        </div>
+                        <p class="price">64.000₫ <span class="old-price">73.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <!-- ======= VĂN PHÒNG PHẨM ======= -->
+                <div class="shop-card" data-category="vanphongpham">
+                    <div class="sale-badge">-6%</div>
+                    <img src="image/keo.png" alt="Kéo Văn Phòng SC-014 (17cm) - Xanh">
+                    <div class="shop-info">
+                        <h3>Kéo Văn Phòng SC-014 (17cm) - Xanh <br> <span class="verified">Chính
+                                hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★☆</span>
+                            <span class="sold">Đã bán 15</span>
+                        </div>
+                        <p class="price">33.800₫ <span class="old-price">36.000₫</span></p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+                <div class="shop-card" data-category="vanphongpham">
+                    <img src="image/ongcambut.png" alt="Ống Cắm Bút, Đựng Cọ Make Up, Văn phòng phẩm Thỏ Mori">
+                    <div class="shop-info">
+                        <h3>Ống Cắm Bút, Đựng Cọ MakeUp, Văn phòng phẩm Thỏ Mori <span class="verified">Chính
+                                hãng</span></h3>
+                        <div class="product-meta">
+                            <span class="stars">★★★★★</span>
+                            <span class="sold">Đã bán 5</span>
+                        </div>
+                        <p class="price"> 189.000₫ </p>
+                        <button class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i> Thêm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlay giỏ hàng -->
+    <div id="cart-overlay" class="cart-overlay">
+        <div class="cart-content">
+            <span class="close-cart">&times;</span>
+            <h2>🛒 Giỏ hàng của bạn</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body"></tbody>
+            </table>
+            <div class="cart-footer">
+                <h3>Tổng cộng: <span id="cart-total">0</span>₫</h3>
+                <button class="checkout-btn">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer class="footer">
+        <p>© 2025 Tibiki Store</p>
+    </footer>
+
+</body>
+
+</html>
