@@ -160,74 +160,133 @@ document.addEventListener("DOMContentLoaded", () =>
     const loginForm = document.getElementById("login-form");
     const registerForm = document.getElementById("register-form");
 
-    if (loginBtn && logoutBtn && authModal)
+    // Mở modal đăng nhập
+    loginBtn.addEventListener("click", () =>
     {
-        loginBtn.addEventListener("click", () =>
-        {
-            authModal.classList.remove("hidden");
-            loginForm?.classList.remove("hidden");
-            registerForm?.classList.add("hidden");
-        });
+        authModal.classList.remove("hidden");
+        loginForm.classList.remove("hidden");
+        registerForm.classList.add("hidden");
+    });
 
-        closeAuth?.addEventListener("click", () => authModal.classList.add("hidden"));
+    // Đóng modal
+    closeAuth.addEventListener("click", () => authModal.classList.add("hidden"));
 
-        document.getElementById("show-register")?.addEventListener("click", e =>
-        {
-            e.preventDefault();
-            loginForm?.classList.add("hidden");
-            registerForm?.classList.remove("hidden");
-        });
+    // Chuyển sang form đăng ký
+    document.getElementById("show-register").addEventListener("click", e =>
+    {
+        e.preventDefault();
+        loginForm.classList.add("hidden");
+        registerForm.classList.remove("hidden");
+    });
 
-        document.getElementById("show-login")?.addEventListener("click", e =>
-        {
-            e.preventDefault();
-            registerForm?.classList.add("hidden");
-            loginForm?.classList.remove("hidden");
-        });
+    // Quay lại form đăng nhập
+    document.getElementById("show-login").addEventListener("click", e =>
+    {
+        e.preventDefault();
+        registerForm.classList.add("hidden");
+        loginForm.classList.remove("hidden");
+    });
 
-        // Đăng xuất
-        logoutBtn.addEventListener("click", () =>
-        {
-            logoutBtn.classList.add("hidden");
-            loginBtn.classList.remove("hidden");
-            alert("Bạn đã đăng xuất!");
-        });
+    // Đăng xuất
+    logoutBtn.addEventListener("click", () =>
+    {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+
+        logoutBtn.classList.add("hidden");
+        loginBtn.classList.remove("hidden");
+        document.getElementById("welcome-user").textContent = "";
+        alert("Bạn đã đăng xuất!");
+    });
+
+    // Khi load trang -> check trạng thái login
+    if (localStorage.getItem("isLoggedIn") === "true")
+    {
+        loginBtn.classList.add("hidden");
+        logoutBtn.classList.remove("hidden");
+        document.getElementById("welcome-user").textContent =
+            "Xin chào, " + localStorage.getItem("username");
+    }
+});
+
+// ====== Hàm tiện ích hiển thị thông báo ======
+function showMessage(elementId, text, type = "error")
+{
+    const msg = document.getElementById(elementId);
+    msg.textContent = text;
+    msg.className = "message " + type;
+    msg.style.display = "block";
+    setTimeout(() => { msg.style.display = "none"; }, 3000);
+}
+
+// ====== Xử lý đăng nhập ======
+function handleLogin()
+{
+    const user = document.getElementById("login-username").value.trim();
+    const pass = document.getElementById("login-password").value.trim();
+
+    if (!user || !pass)
+    {
+        showMessage("login-message", "Vui lòng nhập đầy đủ thông tin!");
+        return;
     }
 
-    window.handleLogin = function ()
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const foundUser = users.find(u => u.username === user && u.password === pass);
+
+    if (foundUser)
     {
-        const user = document.getElementById("login-username")?.value;
-        const pass = document.getElementById("login-password")?.value;
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", user);
 
-        if (user && pass)
-        {
-            alert("Đăng nhập thành công: " + user);
-            authModal.classList.add("hidden");
-            loginBtn.classList.add("hidden");
-            logoutBtn.classList.remove("hidden");
-        } else
-        {
-            alert("Vui lòng nhập đầy đủ thông tin!");
-        }
-    };
+        showMessage("login-message", "Đăng nhập thành công!", "success");
 
-    window.handleRegister = function ()
+        setTimeout(() =>
+        {
+            document.getElementById("auth-modal").classList.add("hidden");
+            document.getElementById("login-btn").classList.add("hidden");
+            document.getElementById("logout-btn").classList.remove("hidden");
+            document.getElementById("welcome-user").textContent = "Xin chào, " + user;
+        }, 1000);
+    } else
     {
-        const user = document.getElementById("register-username")?.value;
-        const email = document.getElementById("register-email")?.value;
-        const pass = document.getElementById("register-password")?.value;
+        showMessage("login-message", "Sai tài khoản hoặc mật khẩu!");
+    }
+}
 
-        if (user && email && pass)
-        {
-            alert("Đăng ký thành công cho tài khoản: " + user);
-            registerForm?.classList.add("hidden");
-            loginForm?.classList.remove("hidden");
-        } else
-        {
-            alert("Vui lòng nhập đầy đủ thông tin!");
-        }
-    };
-});
+// ====== Xử lý đăng ký ======
+function handleRegister()
+{
+    const user = document.getElementById("register-username").value.trim();
+    const email = document.getElementById("register-email").value.trim();
+    const pass = document.getElementById("register-password").value.trim();
+
+    if (!user || !email || !pass)
+    {
+        showMessage("register-message", "Vui lòng nhập đầy đủ thông tin!");
+        return;
+    }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    if (users.find(u => u.username === user))
+    {
+        showMessage("register-message", "Tên đăng nhập đã tồn tại!");
+        return;
+    }
+
+    users.push({ username: user, email: email, password: pass });
+    localStorage.setItem("users", JSON.stringify(users));
+
+    showMessage("register-message", "Đăng ký thành công!", "success");
+
+    setTimeout(() =>
+    {
+        registerForm.classList.add("hidden");
+        loginForm.classList.remove("hidden");
+    }, 1000);
+}
+
+
 
 // ================== SLIDESHOW ==================
 document.addEventListener("DOMContentLoaded", () =>
@@ -291,16 +350,20 @@ document.addEventListener("DOMContentLoaded", () =>
 });
 
 // TÍNH NĂNG THANH TÌM KIẾM
-function search() {
+function search()
+{
     let input = document.getElementById("searchInput").value.toLowerCase();
     let products = document.querySelectorAll(".product");
 
-    products.forEach(product => {
+    products.forEach(product =>
+    {
         let name = product.querySelector(".product-name").textContent.toLowerCase();
-        
-        if (name.includes(input)) {
+
+        if (name.includes(input))
+        {
             product.style.display = "block"; // Hiện sản phẩm
-        } else {
+        } else
+        {
             product.style.display = "none"; // Ẩn sản phẩm
         }
     });
