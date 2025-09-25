@@ -1,0 +1,155 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f0f9ff, #cbebff);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== TIÊU ĐỀ ===== */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #27ae60;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* ===== CONTAINER ===== */
+#cart-container {
+    max-width: 950px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+#cart-container p {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+}
+
+/* ===== SẢN PHẨM ===== */
+#cart-container div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    transition: 0.3s;
+}
+
+#cart-container div:hover {
+    background: #f9f9f9;
+    transform: scale(1.02);
+    border-radius: 10px;
+}
+
+#cart-container div img {
+    width: 80px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+#cart-container div img:hover {
+    transform: scale(1.1) rotate(-2deg);
+}
+
+#cart-container b {
+    flex: 1;
+    margin-left: 15px;
+    font-size: 17px;
+    color: #2c3e50;
+}
+
+#cart-container span {
+    font-size: 15px;
+    color: #555;
+}
+
+/* ===== NÚT XÓA ===== */
+#cart-container button {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #e74c3c;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#cart-container button:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+/* ===== TỔNG TIỀN ===== */
+#total {
+    text-align: right;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 25px;
+    color: #27ae60;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10px;
+}
+
+/* ===== NÚT THANH TOÁN ===== */
+#checkout {
+    display: block;
+    margin: 25px auto;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    transition: 0.3s;
+}
+
+#checkout:hover {
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.5);
+}

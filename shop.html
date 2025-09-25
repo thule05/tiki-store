@@ -38,8 +38,10 @@
                 <li><a href="shop.html">Cửa hàng</a></li>
                 <li><a href="contact.html">Liên hệ</a></li>
                 <li>
-                    <button id="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span
-                            id="cart-count">0</span>)</button>
+                    <a href="cart.html" class="cart-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-count" class="cart-count hidden">0</span>
+                    </a>
                 </li>
                 <li><button id="login-btn">Đăng nhập</button></li>
                 <li><button id="logout-btn" class="hidden">Đăng xuất</button></li>
@@ -101,12 +103,12 @@
                 <div class="shop-card" data-category="sach">
                     <div class="sale-badge">-37%</div>
                     <!-- Link vào ảnh -->
-                    <a href="product.html"?id="1">
+                    <a href="product.html" ?id="1">
                         <img src="image/sach1.png" alt="Nghệ Thuật Tư Duy Phản Biện">
                     </a>
                     <div class="shop-info">
                         <!-- Link vào tên -->
-                        <a href="product.html"?id="1">
+                        <a href="product.html" ?id="1">
                             <h3>Nghệ Thuật Tư Duy Phản Biện <br><span class="verified">Chính hãng</span></h3>
                         </a>
                         <div class="product-meta">

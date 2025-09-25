@@ -85,17 +85,41 @@ header {
     float: left;
 }
 
-#cart-btn {
-    color: rgb(52, 52, 52);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 17px;
+/* Icon giỏ hàng */
+.cart-link {
+    position: relative;
+    display: inline-block;
+    font-size: 26px;
+    /* to hơn một chút cho cân đối */
+    color: #333;
+    text-decoration: none;
+    margin-right: 15px;
+    /* cách nút đăng nhập */
 }
 
-#cart-btn:hover {
-    background: rgb(141, 225, 240);
+/* Badge số lượng */
+.cart-count {
+    position: absolute;
+    top: 10px;
+    /* dịch xuống gần icon */
+    right: 15px;
+    /* dịch sát vào giỏ hàng */
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 50%;
+    display: inline-block;
+    min-width: 18px;
+    text-align: center;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Ẩn khi chưa có sản phẩm */
+.cart-count.hidden {
+    display: none;
 }
 
 #login-btn,

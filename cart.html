@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="stylecart.css">
+</head>
+
+<body>
+    <h2>Giỏ hàng của bạn</h2>
+    <div id="cart-container"></div>
+    <h3 id="total"></h3>
+    <button id="checkout">Thanh toán</button>
+
+    <script src="cart.js"></script>
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let container = document.getElementById("cart-container");
+        let total = 0;
+
+        if (cart.length === 0)
+        {
+            container.innerHTML = "<p>Giỏ hàng trống.</p>";
+        } else
+        {
+            cart.forEach((item, index) =>
+            {
+                let div = document.createElement("div");
+                div.innerHTML = `
+          <img src="${item.image}" width="50">
+          <b>${item.name}</b> - ${item.price} x ${item.quantity}
+          <button onclick="removeItem(${index})">Xóa</button>
+        `;
+                container.appendChild(div);
+
+                // Tính tổng
+                let priceNum = parseInt(item.price.replace(/[^\d]/g, ""));
+                total += priceNum * item.quantity;
+            });
+            document.getElementById("total").innerText = "Tổng: " + total.toLocaleString("vi-VN") + "₫";
+        }
+
+        // Xóa sản phẩm
+        function removeItem(i)
+        {
+            cart.splice(i, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+        }
+
+        // Thanh toán
+        document.getElementById("checkout").addEventListener("click", () =>
+        {
+            alert("Cảm ơn bạn đã thanh toán! (ở đây bạn có thể kết nối cổng thanh toán online)");
+            localStorage.removeItem("cart");
+            location.reload();
+        });
+    </script>
+</body>
+
+</html>
