@@ -9,6 +9,7 @@
     <title>Tibiki Store</title>
     <link rel="icon" type="image/jpg" href="image/logo.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleError.css">
     <link rel="stylesheet" href="stylecontact.css">
     <link rel="stylesheet" href="stylebanner.css">
     <link rel="stylesheet" href="style_feature.css">
@@ -40,7 +41,8 @@
                 <li><a href="shop.html">Cửa hàng</a></li>
                 <li><a href="contact.html">Liên hệ</a></li>
                 <li>
-                    <button id="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span id="cart-count">0</span>)</button>
+                    <button id="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span
+                            id="cart-count">0</span>)</button>
                 </li>
                 <li><button id="login-btn">Đăng nhập</button></li>
                 <li><button id="logout-btn" class="hidden">Đăng xuất</button></li>
@@ -55,6 +57,7 @@
             <!-- Form Đăng nhập -->
             <div id="login-form">
                 <h2>Đăng nhập</h2>
+                <div id="login-message" class="message"></div>
                 <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
                 <input type="password" id="login-password" placeholder="Mật khẩu" required>
                 <button onclick="handleLogin()">Đăng nhập</button>
@@ -64,6 +67,7 @@
             <!-- Form Đăng ký -->
             <div id="register-form" class="hidden">
                 <h2>Đăng ký</h2>
+                <div id="register-message" class="message"></div>
                 <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
                 <input type="email" id="register-email" placeholder="Email" required>
                 <input type="password" id="register-password" placeholder="Mật khẩu" required>
@@ -139,6 +143,7 @@
     <button id="chat-toggle">💬 Chat</button>
 
     <script src="script.js"></script>
+    <script src="script_LogIn_Out.js"></script>
 
     <footer class="footer">
         <div class="footer-container">

@@ -8,6 +8,7 @@
 
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleError.css">
     <link rel="stylesheet" href="stylebanner.css">
     <link rel="stylesheet" href="style_feature.css">
     <link rel="stylesheet" href="StyleSP.css">
@@ -36,9 +37,10 @@
                 <li><a href="gioithieu.html">Giới thiệu</a></li>
                 <li><a href="shop.html">Cửa hàng</a></li>
                 <li><a href="contact.html">Liên hệ</a></li>
-                <button id="cart-btn">
-                    <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span id="cart-count">0</span>)
-                </button>
+                <li>
+                    <button id="cart-btn"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span
+                            id="cart-count">0</span>)</button>
+                </li>
                 <li><button id="login-btn">Đăng nhập</button></li>
                 <li><button id="logout-btn" class="hidden">Đăng xuất</button></li>
             </ul>
@@ -52,6 +54,7 @@
             <!-- Form Đăng nhập -->
             <div id="login-form">
                 <h2>Đăng nhập</h2>
+                <div id="login-message" class="message"></div>
                 <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
                 <input type="password" id="login-password" placeholder="Mật khẩu" required>
                 <button onclick="handleLogin()">Đăng nhập</button>
@@ -61,6 +64,7 @@
             <!-- Form Đăng ký -->
             <div id="register-form" class="hidden">
                 <h2>Đăng ký</h2>
+                <div id="register-message" class="message"></div>
                 <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
                 <input type="email" id="register-email" placeholder="Email" required>
                 <input type="password" id="register-password" placeholder="Mật khẩu" required>
@@ -97,12 +101,12 @@
                 <div class="shop-card" data-category="sach">
                     <div class="sale-badge">-37%</div>
                     <!-- Link vào ảnh -->
-                    <a href="product.html"?id="1">
+                    <a href="product.html" ?id="1">
                         <img src="image/sach1.png" alt="Nghệ Thuật Tư Duy Phản Biện">
                     </a>
                     <div class="shop-info">
                         <!-- Link vào tên -->
-                        <a href="product.html"?id="1">
+                        <a href="product.html" ?id="1">
                             <h3>Nghệ Thuật Tư Duy Phản Biện <br><span class="verified">Chính hãng</span></h3>
                         </a>
                         <div class="product-meta">
@@ -305,6 +309,7 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="script_LogIn_Out.js"></script>
 
     <script>
         window.onload = function ()
