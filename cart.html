@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Giỏ hàng</title>
     <link rel="stylesheet" href="stylecart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -12,6 +14,9 @@
     <div id="cart-container"></div>
     <h3 id="total"></h3>
     <button id="checkout">Thanh toán</button>
+
+    <!-- Thông báo -->
+    <div id="toast"></div>
 
     <script src="cart.js"></script>
     <script>
@@ -49,12 +54,36 @@
             location.reload();
         }
 
+        // Hàm hiển thị thông báo
+        function showToast(message, type = "success")
+        {
+            let toast = document.getElementById("toast");
+            toast.innerHTML =
+                type === "success"
+                    ? `<i class="fa-solid fa-circle-check"></i> ${message}`
+                    : `<i class="fa-solid fa-circle-xmark"></i> ${message}`;
+
+            toast.className = `show ${type}`;
+
+            // Ẩn sau 3 giây
+            setTimeout(() =>
+            {
+                toast.className = toast.className.replace(`show ${type}`, "");
+            }, 3000);
+        }
+
         // Thanh toán
         document.getElementById("checkout").addEventListener("click", () =>
         {
-            alert("Cảm ơn bạn đã thanh toán! (ở đây bạn có thể kết nối cổng thanh toán online)");
-            localStorage.removeItem("cart");
-            location.reload();
+            if (cart.length > 0)
+            {
+                showToast("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "success");
+                localStorage.removeItem("cart");
+                setTimeout(() => location.reload(), 1500);
+            } else
+            {
+                showToast("Chưa có sản phẩm nào để thanh toán!", "error");
+            }
         });
     </script>
 </body>

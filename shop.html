@@ -8,6 +8,7 @@
 
     <link rel="icon" type="image/png" href="image/logo.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleNotification.css">
     <link rel="stylesheet" href="styleError.css">
     <link rel="stylesheet" href="stylebanner.css">
     <link rel="stylesheet" href="style_feature.css">
@@ -286,29 +287,8 @@
         </div>
     </section>
 
-    <!-- Overlay giỏ hàng -->
-    <div id="cart-overlay" class="cart-overlay">
-        <div class="cart-content">
-            <span class="close-cart">&times;</span>
-            <h2>🛒 Giỏ hàng của bạn</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Sản phẩm</th>
-                        <th>Đơn giá</th>
-                        <th>Số lượng</th>
-                        <th>Tổng</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="cart-body"></tbody>
-            </table>
-            <div class="cart-footer">
-                <h3>Tổng cộng: <span id="cart-total">0</span>₫</h3>
-                <button class="checkout-btn">Thanh toán</button>
-            </div>
-        </div>
-    </div>
+    <!-- Thông báo THÊM SP VÀO GIỎ HÀNG -->
+    <div id="toast"></div>
 
     <script src="script.js"></script>
     <script src="script_LogIn_Out.js"></script>

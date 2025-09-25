@@ -1,7 +1,7 @@
 // ================== GIỎ HÀNG ==================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Hàm cập nhật số lượng hiển thị trên icon giỏ
+// Cập nhật số lượng hiển thị trên icon giỏ
 function updateCartCount()
 {
     const count = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -20,10 +20,59 @@ function updateCartCount()
     }
 }
 
-// Hàm thêm sản phẩm vào giỏ
+// ================== THÔNG BÁO THÊM SẢN PHẨM VÀO GIỎ HÀNG ==================
+function showToast(message, type = "success", product = null)
+{
+    const toast = document.getElementById("toast");
+    if (!toast) return; 
+
+    let icon = "";
+    let bg = "#333";
+
+    if (type === "success")
+    {
+        icon = '<i class="fa-solid fa-circle-check"></i>';
+        bg = "#4caf50";
+    }
+    if (type === "error")
+    {
+        icon = '<i class="fa-solid fa-circle-xmark"></i>';
+        bg = "#f44336";
+    }
+    if (type === "info")
+    {
+        icon = '<i class="fa-solid fa-circle-info"></i>';
+        bg = "#2196f3";
+    }
+
+    if (product)
+    {
+        toast.innerHTML = `
+            ${icon}
+            <img src="${product.image}" width="40" style="border-radius:6px">
+            <div>
+                <strong>${message}</strong><br>
+                <small>${product.name}</small>
+            </div>
+        `;
+    } else
+    {
+        toast.innerHTML = `${icon} <span>${message}</span>`;
+    }
+
+    toast.style.background = bg;
+
+    toast.className = "show";
+
+    setTimeout(() =>
+    {
+        toast.className = toast.className.replace("show", "");
+    }, 3000);
+}
+
+// ================== THÊM SẢN PHẨM ==================
 function addToCart(product)
 {
-    // Kiểm tra sản phẩm đã tồn tại chưa
     let existing = cart.find(item => item.name === product.name);
     if (existing)
     {
@@ -34,13 +83,10 @@ function addToCart(product)
         cart.push(product);
     }
 
-    // Lưu vào localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    // Cập nhật số lượng trên icon giỏ
     updateCartCount();
 
-    alert("Đã thêm vào giỏ hàng!");
+    showToast("Đã thêm vào giỏ hàng!", "success", product);
 }
 
 // Lắng nghe sự kiện khi bấm nút "Thêm"
@@ -54,16 +100,12 @@ document.querySelectorAll(".add-to-cart").forEach((btn) =>
             name: card.querySelector("h3").innerText,
             price: card.querySelector(".price").childNodes[0].textContent.trim(),
             image: card.querySelector("img").src
-        };
-
-        addToCart(product);
+        }; addToCart(product);
     });
 });
 
 // Khi load trang thì cập nhật số lượng luôn
 updateCartCount();
-
-
 
 // ================== CHATBOT ==================
 document.addEventListener("DOMContentLoaded", () =>

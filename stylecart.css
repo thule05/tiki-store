@@ -14,7 +14,6 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* ===== ANIMATION ===== */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -152,4 +151,46 @@ h2::after {
     background: linear-gradient(45deg, #2ecc71, #27ae60);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 20px rgba(39, 174, 96, 0.5);
+}
+
+/* ====== THÔNG BÁO TRẠNG THÁI THANH TOÁN ======== */
+#toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    min-width: 250px;
+    max-width: 350px;
+    background: #333;
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Thành công */
+#toast.success {
+    background: #4CAF50;
+}
+
+/* Thất bại */
+#toast.error {
+    background: #f44336;
+}
+
+#toast i {
+    font-size: 18px;
 }
