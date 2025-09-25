@@ -337,6 +337,19 @@
             </div>
         </div>
 
+        
+        <script>
+            // Chuyển sang shop.html kèm từ khóa
+            function search()
+            {
+                let keyword = document.getElementById("searchInput").value.trim();
+                if (keyword)
+                {
+                    window.location.href = "shop.html?search=" + encodeURIComponent(keyword);
+                }
+            }
+        </script>
+
         <!-- Dòng bản quyền -->
         <div class="footer-bottom">
             <p>© 2025 Tibiki Store</p>

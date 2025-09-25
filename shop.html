@@ -96,9 +96,15 @@
                 <!-- ======= SÁCH ======= -->
                 <div class="shop-card" data-category="sach">
                     <div class="sale-badge">-37%</div>
-                    <img src="image/sach1.png" alt="Nghệ Thuật Tư Duy Phản Biện">
+                    <!-- Link vào ảnh -->
+                    <a href="product.html"?id="1">
+                        <img src="image/sach1.png" alt="Nghệ Thuật Tư Duy Phản Biện">
+                    </a>
                     <div class="shop-info">
-                        <h3>Nghệ Thuật Tư Duy Phản Biện <br><span class="verified">Chính hãng</span></h3>
+                        <!-- Link vào tên -->
+                        <a href="product.html"?id="1">
+                            <h3>Nghệ Thuật Tư Duy Phản Biện <br><span class="verified">Chính hãng</span></h3>
+                        </a>
                         <div class="product-meta">
                             <span class="stars">★★★★★</span>
                             <span class="sold">Đã bán 6300</span>
@@ -299,6 +305,32 @@
     </div>
 
     <script src="script.js"></script>
+
+    <script>
+        window.onload = function ()
+        {
+            // Lấy query param "search"
+            const params = new URLSearchParams(window.location.search);
+            const keyword = params.get("search");
+
+            if (keyword)
+            {
+                const productCards = document.querySelectorAll(".shop-card");
+                productCards.forEach(card =>
+                {
+                    let title = card.querySelector("h3").innerText.toLowerCase();
+                    if (title.includes(keyword.toLowerCase()))
+                    {
+                        card.style.display = "block"; // hiện sản phẩm phù hợp
+                    } else
+                    {
+                        card.style.display = "none"; // ẩn sản phẩm không khớp
+                    }
+                });
+            }
+        };
+    </script>
+
 
     <footer class="footer">
         <p>© 2025 Tibiki Store</p>
