@@ -116,11 +116,14 @@ h2::after {
     font-size: 15px;
 }
 
-.btn-inc, .btn-dec {
+.btn-inc,
+.btn-dec {
     background: #3498db;
     color: white;
 }
-.btn-inc:hover, .btn-dec:hover {
+
+.btn-inc:hover,
+.btn-dec:hover {
     background: #2980b9;
     transform: scale(1.05);
 }
@@ -129,6 +132,7 @@ h2::after {
     background: #e74c3c;
     color: white;
 }
+
 .btn-del:hover {
     background: #c0392b;
     transform: scale(1.05);
@@ -148,7 +152,7 @@ h2::after {
     font-size: 22px;
     font-weight: bold;
     margin-top: 25px;
-    color: #27ae60;
+    color: #27ae34;
     max-width: 950px;
     margin-left: auto;
     margin-right: auto;
@@ -162,7 +166,7 @@ h2::after {
     padding: 14px 28px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    background: linear-gradient(45deg, #f74d2f, #f43939);
     color: white;
     font-size: 20px;
     font-weight: bold;
@@ -172,7 +176,7 @@ h2::after {
 }
 
 #checkout:hover {
-    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    background: linear-gradient(45deg, #f39c1a, #faa718);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 20px rgba(39, 174, 96, 0.5);
 }
@@ -203,4 +207,54 @@ h2::after {
 #toast.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* KHUYẾN MÃI */
+.coupon-section {
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px dashed #ff9800;
+    border-radius: 12px;
+    background: #fff8e1;
+    max-width: 400px;
+}
+
+.coupon-section h3 {
+    margin: 0 0 10px;
+    color: #e65100;
+    font-size: 18px;
+}
+
+.coupon-box {
+    display: flex;
+    gap: 10px;
+}
+
+.coupon-box select {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.coupon-box button {
+    padding: 8px 16px;
+    border: none;
+    background: #ff9800;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.coupon-box button:hover {
+    background: #e65100;
+}
+
+#coupon-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #4caf50;
 }

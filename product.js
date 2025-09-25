@@ -380,3 +380,4 @@ if (typeof product !== "undefined" && container)
         showQuantityPopup(product, true)
     );
 }
+
