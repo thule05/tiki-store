@@ -24,7 +24,7 @@ function updateCartCount()
 function showToast(message, type = "success", product = null)
 {
     const toast = document.getElementById("toast");
-    if (!toast) return; 
+    if (!toast) return;
 
     let icon = "";
     let bg = "#333";

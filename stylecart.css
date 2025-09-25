@@ -65,7 +65,7 @@ h2::after {
 }
 
 /* ===== SẢN PHẨM ===== */
-#cart-container div {
+.cart-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,54 +74,78 @@ h2::after {
     transition: 0.3s;
 }
 
-#cart-container div:hover {
+.cart-item:hover {
     background: #f9f9f9;
-    transform: scale(1.02);
+    transform: scale(1.01);
     border-radius: 10px;
 }
 
-#cart-container div img {
+/* Ảnh sản phẩm */
+.cart-item img {
     width: 80px;
     border-radius: 10px;
     transition: 0.3s;
 }
 
-#cart-container div img:hover {
+.cart-item img:hover {
     transform: scale(1.1) rotate(-2deg);
 }
 
-#cart-container b {
+/* Thông tin sản phẩm */
+.cart-details {
     flex: 1;
     margin-left: 15px;
-    font-size: 17px;
+    font-size: 16px;
     color: #2c3e50;
 }
 
-#cart-container span {
-    font-size: 15px;
-    color: #555;
+/* Khu vực nút hành động */
+.cart-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* ===== NÚT XÓA ===== */
-#cart-container button {
-    padding: 7px 14px;
+/* ===== NÚT ===== */
+.cart-actions button {
+    padding: 6px 12px;
     border: none;
-    border-radius: 8px;
-    background: #e74c3c;
-    color: white;
+    border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 15px;
 }
 
-#cart-container button:hover {
+.btn-inc, .btn-dec {
+    background: #3498db;
+    color: white;
+}
+.btn-inc:hover, .btn-dec:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.btn-del {
+    background: #e74c3c;
+    color: white;
+}
+.btn-del:hover {
     background: #c0392b;
     transform: scale(1.05);
+}
+
+/* Số lượng */
+.cart-actions span {
+    min-width: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
 }
 
 /* ===== TỔNG TIỀN ===== */
 #total {
     text-align: right;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     margin-top: 25px;
     color: #27ae60;
@@ -179,18 +203,4 @@ h2::after {
 #toast.show {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Thành công */
-#toast.success {
-    background: #4CAF50;
-}
-
-/* Thất bại */
-#toast.error {
-    background: #f44336;
-}
-
-#toast i {
-    font-size: 18px;
 }
