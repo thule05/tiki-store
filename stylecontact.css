@@ -1,10 +1,17 @@
+body {
+    background-image: url('image/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 /* ===== Nền trang nhẹ nhàng ===== */
-.soft-bg {
+/*.soft-bg {
     background: #f5f7f9;
-    /* xám nhạt dịu mắt */
+    xám nhạt dịu mắt 
     padding: 60px 20px;
     color: #333;
-}
+}*/
 
 .contact-wrapper h1 {
     text-align: center;
@@ -12,7 +19,6 @@
     margin-bottom: 10px;
     font-weight: 700;
     color: #2c3e50;
-    /* xanh xám đậm */
 }
 
 .contact-wrapper .subtitle {
@@ -37,6 +43,7 @@
     border-radius: 12px;
     padding: 28px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
 }
 
 .info-card h2,
@@ -46,11 +53,11 @@
     font-size: 1.3rem;
 }
 
-.info-card a {
+.contact-grid {
     color: #27ae60;
-    /* xanh lá dịu */
     text-decoration: none;
     font-weight: 500;
+
 }
 
 .info-card a:hover {
@@ -75,6 +82,7 @@
     transition: border-color 0.2s;
     background: #fdfdfd;
 }
+
 
 .contact-form input:focus,
 .contact-form textarea:focus {
@@ -114,4 +122,23 @@
     .contact-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+.info-card {
+    background-image: url("image/khungcontact1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.info-card p {
+    line-height: 2;
+}
+
+.info-card h2 {
+    margin-top: 10px;
 }
