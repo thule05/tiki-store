@@ -259,8 +259,12 @@ header {
 
 .video {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     font-size: 2em;
+}
+
+.video h2{
+    padding: 10px;
 }
 
 /* CHATBOT */
