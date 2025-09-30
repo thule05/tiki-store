@@ -26,13 +26,17 @@
 <body>
     <!-- HEADER -->
     <header>
-        <img src="image/logo.png" alt="Tiki" height="65" width="150">
-        <div class="search-box">
-            <a href="">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-            <input type="text" id="searchInput" placeholder="Nhập từ khóa..." />
-            <button onclick="search()">Tìm kiếm</button>
+        <a href="index.html">
+            <img src="image/logo.png" alt="Tiki" height="65" width="150">
+        </a>
+        <div class="search-wrapper">
+            <div class="search-box">
+                <a href="">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <input type="text" id="searchInput" placeholder="Nhập từ khóa..." />
+                <div id="suggestions" class="suggestions"></div>
+            </div>
         </div>
         <nav class="navbar">
             <ul>
@@ -111,15 +115,11 @@
     </main>
 
     <!-- Chatbot -->
-    <div id="chatbot">
-        <div id="chat-header">Chat với Tiki <span id="chat-close">✕</span></div>
-        <div id="chat-body"></div>
-        <div class="chat-footer">
-            <input type="text" id="chat-input" placeholder="Nhập tin nhắn...">
-            <button id="chat-send">Gửi</button>
-        </div>
-    </div>
-    <button id="chat-toggle">💬</button>
+    <script src="https://app.tudongchat.com/js/chatbox.js"></script>
+    <script>
+        const tudong_chatbox = new TuDongChat('lIKBJuuCEEpDLQsow66EY')
+        tudong_chatbox.initial()
+    </script>
 
     <script src="script.js"></script>
     <script src="script_LogIn_Out.js"></script>
@@ -136,10 +136,10 @@
             <div class="footer-column">
                 <h3>Liên kết nhanh</h3>
                 <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="shop.html">Sản phẩm</a></li>
                     <li><a href="#">Khuyến mãi</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
                 </ul>
             </div>
 
@@ -160,11 +160,23 @@
                 <div class="social-icons">
                     <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
                     <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
                     <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
                 </div>
             </div>
         </div>
+
+
+        <script>
+            // Chuyển sang shop.html kèm từ khóa
+            function search()
+            {
+                let keyword = document.getElementById("searchInput").value.trim();
+                if (keyword)
+                {
+                    window.location.href = "shop.html?search=" + encodeURIComponent(keyword);
+                }
+            }
+        </script>
 
         <!-- Dòng bản quyền -->
         <div class="footer-bottom">

@@ -24,13 +24,17 @@
 <body>
     <!-- HEADER -->
     <header>
-        <img src="image/logo.png" alt="Tiki" height="65" width="150">
-        <div class="search-box">
-            <a href="">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-            <input type="text" id="searchInput" placeholder="Nhập từ khóa..." />
-            <button onclick="search()">Tìm kiếm</button>
+        <a href="index.html">
+            <img src="image/logo.png" alt="Tiki" height="65" width="150">
+        </a>
+        <div class="search-wrapper">
+            <div class="search-box">
+                <a href="">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <input type="text" id="searchInput" placeholder="Nhập từ khóa..." />
+                <div id="suggestions" class="suggestions"></div>
+            </div>
         </div>
         <nav class="navbar">
             <ul>
@@ -366,9 +370,72 @@
         };
     </script>
 
+    <!-- Chatbot-->
+    <script src="https://app.tudongchat.com/js/chatbox.js"></script>
+    <script>
+        const tudong_chatbox = new TuDongChat('lIKBJuuCEEpDLQsow66EY')
+        tudong_chatbox.initial()
+    </script>
+
 
     <footer class="footer">
-        <p>© 2025 Tiki Store</p>
+        <div class="footer-container">
+            <!-- Cột 1: Logo + mô tả -->
+            <div class="footer-column">
+                <h2 class="logo">Tiki Store</h2>
+                <p>Giúp bạn mua sắm dễ dàng, nhanh chóng và tiết kiệm mỗi ngày.</p>
+            </div>
+
+            <!-- Cột 2: Liên kết nhanh -->
+            <div class="footer-column">
+                <h3>Liên kết nhanh</h3>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="shop.html">Sản phẩm</a></li>
+                    <li><a href="#">Khuyến mãi</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 3: Hỗ trợ -->
+            <div class="footer-column">
+                <h3>Hỗ trợ</h3>
+                <ul>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chăm sóc khách hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Cột 4: Mạng xã hội -->
+            <div class="footer-column">
+                <h3>Kết nối</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            // Chuyển sang shop.html kèm từ khóa
+            function search()
+            {
+                let keyword = document.getElementById("searchInput").value.trim();
+                if (keyword)
+                {
+                    window.location.href = "shop.html?search=" + encodeURIComponent(keyword);
+                }
+            }
+        </script>
+
+        <!-- Dòng bản quyền -->
+        <div class="footer-bottom">
+            <p>© 2025 Tiki Store</p>
+        </div>
     </footer>
 
 </body>
